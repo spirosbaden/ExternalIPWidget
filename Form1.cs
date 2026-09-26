@@ -1,14 +1,10 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
-using System.Net.Http;
-using System.Text.Json;
-using System.Threading.Tasks;
+﻿using System.Text.Json;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
 
 namespace ExternalIPWidget
 {
+    // The position file will be located here: C:\Users\<your name>\AppData\Roaming\ExternalIPWidget\position.txt
     public partial class Form1 : Form
     {
         private Label lblInfo;
@@ -84,11 +80,9 @@ namespace ExternalIPWidget
             // FORM
             // =========================================
 
-            FormBorderStyle =
-                FormBorderStyle.None;
+            FormBorderStyle = FormBorderStyle.None;
 
-            StartPosition =
-                FormStartPosition.Manual;
+            StartPosition = FormStartPosition.Manual;
 
             Width = 216;
             Height = 55;
@@ -96,7 +90,7 @@ namespace ExternalIPWidget
             ShowInTaskbar = false;
             TopMost = false;
 
-            // Το συγκεκριμένο χρώμα θα είναι transparent.
+            // This color will be transparent.
             BackColor = transparentColor;
             TransparencyKey = transparentColor;
 
@@ -128,29 +122,22 @@ namespace ExternalIPWidget
 
             lblInfo = new Label();
 
-            lblInfo.Dock =
-                DockStyle.Fill;
+            lblInfo.Dock = DockStyle.Fill;
 
-            lblInfo.Text =
-                "External IP";
+            lblInfo.Text = "External IP";
 
-            lblInfo.TextAlign =
-                ContentAlignment.MiddleCenter;
-
+            lblInfo.TextAlign = ContentAlignment.MiddleCenter;
             lblInfo.Font =
                 new Font(
                     "Segoe UI",
                     11,
                     FontStyle.Bold);
 
-            lblInfo.ForeColor =
-                Color.White;
+            lblInfo.ForeColor = Color.White;
 
-            lblInfo.BackColor =
-                Color.Transparent;
-
-            // Αφήνουμε χώρο δεξιά
-            // για το refresh button.
+            lblInfo.BackColor = Color.Transparent;
+            // We leave space on the right
+            // for the refresh button.
             lblInfo.Padding =
                 new Padding(
                     0,
@@ -164,14 +151,11 @@ namespace ExternalIPWidget
             // LABEL DRAG
             // =========================================
 
-            lblInfo.MouseDown +=
-                Widget_MouseDown;
+            lblInfo.MouseDown += Widget_MouseDown;
 
-            lblInfo.MouseMove +=
-                Widget_MouseMove;
+            lblInfo.MouseMove += Widget_MouseMove;
 
-            lblInfo.MouseUp +=
-                Widget_MouseUp;
+            lblInfo.MouseUp += Widget_MouseUp;
 
             // =========================================
             // REFRESH BUTTON
@@ -179,8 +163,7 @@ namespace ExternalIPWidget
 
             btnRefresh = new Button();
 
-            btnRefresh.Text =
-                "↻";
+            btnRefresh.Text = "↻";
 
             btnRefresh.Font =
                 new Font(
@@ -188,32 +171,20 @@ namespace ExternalIPWidget
                     13,
                     FontStyle.Regular);
 
-            btnRefresh.Size =
-                new Size(34, 34);
+            btnRefresh.Size = new Size(34, 34);
 
-            btnRefresh.FlatStyle =
-                FlatStyle.Flat;
+            btnRefresh.FlatStyle = FlatStyle.Flat;
+            btnRefresh.FlatAppearance.BorderSize = 0;
 
-            btnRefresh.FlatAppearance.BorderSize =
-                0;
+            btnRefresh.FlatAppearance.MouseDownBackColor = Color.Transparent;
+            btnRefresh.FlatAppearance.MouseOverBackColor = Color.Transparent;
 
-            btnRefresh.FlatAppearance.MouseDownBackColor =
-                Color.Transparent;
+            btnRefresh.BackColor = Color.Transparent;
 
-            btnRefresh.FlatAppearance.MouseOverBackColor =
-                Color.Transparent;
+            btnRefresh.ForeColor = Color.White;
 
-            btnRefresh.BackColor =
-                Color.Transparent;
-
-            btnRefresh.ForeColor =
-                Color.White;
-
-            btnRefresh.Cursor =
-                Cursors.Hand;
-
-            btnRefresh.TabStop =
-                false;
+            btnRefresh.Cursor = Cursors.Hand;
+            btnRefresh.TabStop = false;
 
             btnRefresh.Anchor =
                 AnchorStyles.Top |
@@ -244,8 +215,7 @@ namespace ExternalIPWidget
             btnRefresh.MouseEnter +=
                 (s, e) =>
                 {
-                    btnRefresh.ForeColor =
-                        Color.DeepSkyBlue;
+                    btnRefresh.ForeColor = Color.DeepSkyBlue;
 
                     btnRefresh.Font =
                         new Font(
@@ -257,8 +227,7 @@ namespace ExternalIPWidget
             btnRefresh.MouseLeave +=
                 (s, e) =>
                 {
-                    btnRefresh.ForeColor =
-                        Color.White;
+                    btnRefresh.ForeColor = Color.White;
 
                     btnRefresh.Font =
                         new Font(
@@ -284,29 +253,18 @@ namespace ExternalIPWidget
 
             btnClose.Size = new Size(28, 34);
 
-            btnClose.FlatStyle =
-                FlatStyle.Flat;
+            btnClose.FlatStyle = FlatStyle.Flat;
 
-            btnClose.FlatAppearance.BorderSize =
-                0;
+            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.FlatAppearance.MouseDownBackColor = Color.Transparent;
 
-            btnClose.FlatAppearance.MouseDownBackColor =
-                Color.Transparent;
+            btnClose.FlatAppearance.MouseOverBackColor = Color.Transparent;
 
-            btnClose.FlatAppearance.MouseOverBackColor =
-                Color.Transparent;
+            btnClose.BackColor = Color.Transparent;
+            btnClose.ForeColor = Color.White;
 
-            btnClose.BackColor =
-                Color.Transparent;
-
-            btnClose.ForeColor =
-                Color.White;
-
-            btnClose.Cursor =
-                Cursors.Hand;
-
-            btnClose.TabStop =
-                false;
+            btnClose.Cursor = Cursors.Hand;
+            btnClose.TabStop = false;
 
             btnClose.Anchor =
                 AnchorStyles.Top |
@@ -340,8 +298,7 @@ namespace ExternalIPWidget
             btnClose.MouseEnter +=
                 (s, e) =>
                 {
-                    btnClose.ForeColor =
-                        Color.IndianRed;
+                    btnClose.ForeColor = Color.IndianRed;
 
                     btnClose.Font =
                         new Font(
@@ -353,8 +310,7 @@ namespace ExternalIPWidget
             btnClose.MouseLeave +=
                 (s, e) =>
                 {
-                    btnClose.ForeColor =
-                        Color.White;
+                    btnClose.ForeColor = Color.White;
 
                     btnClose.Font =
                         new Font(
@@ -373,42 +329,26 @@ namespace ExternalIPWidget
             // WIDGET MOUSE EVENTS
             // =========================================
 
-            MouseEnter +=
-                Widget_MouseEnter;
+            MouseEnter += Widget_MouseEnter;
 
-            MouseLeave +=
-                Widget_MouseLeave;
+            MouseLeave += Widget_MouseLeave;
+            lblInfo.MouseEnter += Widget_MouseEnter;
 
-            lblInfo.MouseEnter +=
-                Widget_MouseEnter;
+            lblInfo.MouseLeave += Widget_MouseLeave;
+            btnRefresh.MouseEnter += Widget_MouseEnter;
 
-            lblInfo.MouseLeave +=
-                Widget_MouseLeave;
+            btnRefresh.MouseLeave += Widget_MouseLeave;
+            btnClose.MouseEnter += Widget_MouseEnter;
 
-            btnRefresh.MouseEnter +=
-                Widget_MouseEnter;
-
-            btnRefresh.MouseLeave +=
-                Widget_MouseLeave;
-
-            btnClose.MouseEnter +=
-                Widget_MouseEnter;
-
-            btnClose.MouseLeave +=
-                Widget_MouseLeave;
-
+            btnClose.MouseLeave += Widget_MouseLeave;
             // =========================================
             // FORM DRAG
             // =========================================
 
-            MouseDown +=
-                Widget_MouseDown;
+            MouseDown += Widget_MouseDown;
 
-            MouseMove +=
-                Widget_MouseMove;
-
-            MouseUp +=
-                Widget_MouseUp;
+            MouseMove += Widget_MouseMove;
+            MouseUp += Widget_MouseUp;
 
             // =========================================
             // CUSTOM TOOLTIP
@@ -420,12 +360,10 @@ namespace ExternalIPWidget
             // AUTO REFRESH
             // =========================================
 
-            refreshTimer =
-                new System.Windows.Forms.Timer();
+            refreshTimer = new System.Windows.Forms.Timer();
 
             // 5 λεπτά
-            refreshTimer.Interval =
-                5 * 60 * 1000;
+            refreshTimer.Interval = 5 * 60 * 1000;
 
             refreshTimer.Tick +=
                 async (s, e) =>
@@ -463,8 +401,7 @@ namespace ExternalIPWidget
         // ROUNDED CORNERS
         // =============================================
 
-        private void SetRoundedCorners(
-            int radius)
+        private void SetRoundedCorners(int radius)
         {
             IntPtr hRgn =
                 CreateRoundRectRgn(
@@ -475,14 +412,12 @@ namespace ExternalIPWidget
                     radius,
                     radius);
 
-            Region =
-                Region.FromHrgn(hRgn);
+            Region = Region.FromHrgn(hRgn);
 
             DeleteObject(hRgn);
         }
 
-        protected override void OnSizeChanged(
-            EventArgs e)
+        protected override void OnSizeChanged(EventArgs e)
         {
             base.OnSizeChanged(e);
 
@@ -493,8 +428,7 @@ namespace ExternalIPWidget
         // FORM SHOWN
         // =============================================
 
-        protected override async void OnShown(
-            EventArgs e)
+        protected override async void OnShown(EventArgs e)
         {
             base.OnShown(e);
 
@@ -523,8 +457,7 @@ namespace ExternalIPWidget
         {
             try
             {
-                btnRefresh.Enabled =
-                    false;
+                btnRefresh.Enabled = false;
 
                 string json =
                     await httpClient.GetStringAsync(
@@ -533,49 +466,33 @@ namespace ExternalIPWidget
                 using (JsonDocument document =
                     JsonDocument.Parse(json))
                 {
-                    JsonElement root =
-                        document.RootElement;
+                    JsonElement root = document.RootElement;
 
-                    bool success =
-                        root.GetProperty("success")
-                            .GetBoolean();
+                    bool success = root.GetProperty("success").GetBoolean();
 
                     if (!success)
                     {
-                        lblInfo.Text =
-                            "IP Error";
+                        lblInfo.Text = "IP Error";
 
                         return;
                     }
 
-                    string ip =
-                        root.GetProperty("ip")
-                            .GetString();
+                    string ip = root.GetProperty("ip").GetString();
 
-                    string country =
-                        root.GetProperty("country")
-                            .GetString();
-
-                    lblInfo.Text =
-                        ip +
-                        Environment.NewLine +
-                        country;
-
-                    // Αποθηκεύουμε την ώρα
-                    // της τελευταίας επιτυχημένης ενημέρωσης.
-                    lastUpdate =
-                        DateTime.Now;
+                    string country = root.GetProperty("country").GetString();
+                    lblInfo.Text = ip + Environment.NewLine + country;
+                    // We save the time of the last successful update.
+                    lastUpdate = DateTime.Now;
 
                     UpdateTooltipText();
                 }
             }
             catch (Exception ex)
             {
-                lblInfo.Text =
-                    "IP Error";
+                lblInfo.Text = "IP Error";
 
                 MessageBox.Show(
-                    "Δεν ήταν δυνατή η λήψη της External IP.\n\n" +
+                    "It was not possible to obtain the external IP address.\n\n" +
                     ex.Message,
                     "External IP Widget",
                     MessageBoxButtons.OK,
@@ -583,8 +500,7 @@ namespace ExternalIPWidget
             }
             finally
             {
-                btnRefresh.Enabled =
-                    true;
+                btnRefresh.Enabled = true;
             }
         }
 
@@ -592,73 +508,46 @@ namespace ExternalIPWidget
         // DRAG START
         // =============================================
 
-        private void Widget_MouseDown(
-            object sender,
-            MouseEventArgs e)
+        private void Widget_MouseDown(object sender, MouseEventArgs e)
         {
-            if (e.Button !=
-                MouseButtons.Left)
-            {
+            if (e.Button != MouseButtons.Left)
                 return;
-            }
 
-            isDragging =
-                true;
-
-            dragStartMouse =
-                Cursor.Position;
-
-            dragStartForm =
-                Location;
+            isDragging = true;
+            dragStartMouse = Cursor.Position;
+            dragStartForm = Location;
         }
 
         // =============================================
         // DRAG MOVE
         // =============================================
 
-        private void Widget_MouseMove(
-            object sender,
-            MouseEventArgs e)
+        private void Widget_MouseMove(object sender, MouseEventArgs e)
         {
             if (!isDragging)
                 return;
 
-            Point currentMouse =
-                Cursor.Position;
+            Point currentMouse = Cursor.Position;
 
-            int deltaX =
-                currentMouse.X -
-                dragStartMouse.X;
+            int deltaX = currentMouse.X - dragStartMouse.X;
 
-            int deltaY =
-                currentMouse.Y -
-                dragStartMouse.Y;
-
-            Location =
-                new Point(
-                    dragStartForm.X + deltaX,
-                    dragStartForm.Y + deltaY);
+            int deltaY = currentMouse.Y - dragStartMouse.Y;
+            Location = new Point(dragStartForm.X + deltaX, dragStartForm.Y + deltaY);
         }
 
         // =============================================
         // DRAG END
         // =============================================
 
-        private void Widget_MouseUp(
-            object sender,
-            MouseEventArgs e)
+        private void Widget_MouseUp(object sender, MouseEventArgs e)
         {
-            if (e.Button !=
-                MouseButtons.Left)
-            {
+            if (e.Button != MouseButtons.Left)
                 return;
-            }
 
             if (!isDragging)
                 return;
 
-            isDragging =
-                false;
+            isDragging = false;
 
             SavePosition();
         }
@@ -669,8 +558,7 @@ namespace ExternalIPWidget
 
         private void CreateCustomTooltip()
         {
-            tooltipPanel =
-                new Panel();
+            tooltipPanel = new Panel();
 
             tooltipPanel.Size =
                 new Size(
@@ -683,26 +571,19 @@ namespace ExternalIPWidget
                     35,
                     40);
 
-            tooltipPanel.Visible =
-                false;
+            tooltipPanel.Visible = false;
 
-            tooltipPanel.Cursor =
-                Cursors.Default;
-
+            tooltipPanel.Cursor = Cursors.Default;
             tooltipPanel.Region =
                 CreateRoundedRegion(
                     tooltipPanel.Width,
                     tooltipPanel.Height,
                     10);
 
-            lblTooltip =
-                new Label();
+            lblTooltip = new Label();
 
-            lblTooltip.Dock =
-                DockStyle.Fill;
-
-            lblTooltip.TextAlign =
-                ContentAlignment.MiddleCenter;
+            lblTooltip.Dock = DockStyle.Fill;
+            lblTooltip.TextAlign = ContentAlignment.MiddleCenter;
 
             lblTooltip.Font =
                 new Font(
@@ -716,51 +597,36 @@ namespace ExternalIPWidget
                     225,
                     230);
 
-            lblTooltip.BackColor =
-                Color.Transparent;
+            lblTooltip.BackColor = Color.Transparent;
 
-            lblTooltip.Cursor =
-                Cursors.Default;
+            lblTooltip.Cursor = Cursors.Default;
+            tooltipPanel.Controls.Add(lblTooltip);
 
-            tooltipPanel.Controls.Add(
-                lblTooltip);
-
-            Controls.Add(
-                tooltipPanel);
-
+            Controls.Add(tooltipPanel);
             tooltipPanel.BringToFront();
 
             // =========================================
             // TOOLTIP TIMER
             // =========================================
 
-            tooltipHideTimer =
-                new System.Windows.Forms.Timer();
+            tooltipHideTimer = new System.Windows.Forms.Timer();
 
-            // Μικρή καθυστέρηση ώστε να μην
-            // εξαφανίζεται όταν περνάμε
-            // από το widget στο tooltip.
-            tooltipHideTimer.Interval =
-                150;
+            // A short delay so that it doesn't
+            // disappear when we move
+            // from the widget to the tooltip.
+            tooltipHideTimer.Interval = 150;
 
-            tooltipHideTimer.Tick +=
-                TooltipHideTimer_Tick;
-
+            tooltipHideTimer.Tick += TooltipHideTimer_Tick;
             // =========================================
             // TOOLTIP EVENTS
             // =========================================
 
-            tooltipPanel.MouseEnter +=
-                Tooltip_MouseEnter;
+            tooltipPanel.MouseEnter += Tooltip_MouseEnter;
 
-            tooltipPanel.MouseLeave +=
-                Tooltip_MouseLeave;
+            tooltipPanel.MouseLeave += Tooltip_MouseLeave;
+            lblTooltip.MouseEnter += Tooltip_MouseEnter;
 
-            lblTooltip.MouseEnter +=
-                Tooltip_MouseEnter;
-
-            lblTooltip.MouseLeave +=
-                Tooltip_MouseLeave;
+            lblTooltip.MouseLeave += Tooltip_MouseLeave;
         }
 
         // =============================================
@@ -772,11 +638,8 @@ namespace ExternalIPWidget
             if (lblTooltip == null)
                 return;
 
-            if (lastUpdate ==
-                DateTime.MinValue)
-            {
+            if (lastUpdate == DateTime.MinValue)
                 return;
-            }
 
             lblTooltip.Text =
                 "Last update: " +
@@ -789,19 +652,14 @@ namespace ExternalIPWidget
 
         private void ShowCustomTooltip()
         {
-            if (lastUpdate ==
-                DateTime.MinValue)
-            {
+            if (lastUpdate == DateTime.MinValue)
                 return;
-            }
 
             tooltipHideTimer.Stop();
 
             UpdateTooltipText();
 
-            Point mousePosition =
-                PointToClient(
-                    Cursor.Position);
+            Point mousePosition = PointToClient(Cursor.Position);
 
             int x =
                 mousePosition.X +
@@ -815,9 +673,7 @@ namespace ExternalIPWidget
             // RIGHT EDGE
             // =========================================
 
-            if (x +
-                tooltipPanel.Width >
-                Width)
+            if (x + tooltipPanel.Width > Width)
             {
                 x =
                     mousePosition.X -
@@ -829,9 +685,7 @@ namespace ExternalIPWidget
             // BOTTOM EDGE
             // =========================================
 
-            if (y +
-                tooltipPanel.Height >
-                Height)
+            if (y + tooltipPanel.Height > Height)
             {
                 y =
                     mousePosition.Y -
@@ -844,28 +698,17 @@ namespace ExternalIPWidget
             // =========================================
 
             if (y < 0)
-            {
-                y =
-                    mousePosition.Y +
-                    18;
-            }
+                y = mousePosition.Y + 18;
 
             // =========================================
             // LEFT EDGE
             // =========================================
 
             if (x < 0)
-            {
                 x = 5;
-            }
 
-            tooltipPanel.Location =
-                new Point(
-                    x,
-                    y);
-
-            tooltipPanel.Visible =
-                true;
+            tooltipPanel.Location = new Point(x, y);
+            tooltipPanel.Visible = true;
 
             tooltipPanel.BringToFront();
         }
@@ -884,43 +727,29 @@ namespace ExternalIPWidget
         // TOOLTIP HIDE TIMER
         // =============================================
 
-        private void TooltipHideTimer_Tick(
-            object sender,
-            EventArgs e)
+        private void TooltipHideTimer_Tick(object sender, EventArgs e)
         {
             tooltipHideTimer.Stop();
 
-            Point mousePosition =
-                PointToClient(
-                    Cursor.Position);
+            Point mousePosition = PointToClient(Cursor.Position);
 
-            Rectangle widgetArea =
-                ClientRectangle;
+            Rectangle widgetArea = ClientRectangle;
 
-            Rectangle tooltipArea =
-                tooltipPanel.Bounds;
+            Rectangle tooltipArea = tooltipPanel.Bounds;
 
-            // Ο cursor βρίσκεται ακόμα
-            // πάνω στο widget ή tooltip.
-            if (widgetArea.Contains(
-                    mousePosition) ||
-                tooltipArea.Contains(
-                    mousePosition))
-            {
+            // The cursor is still
+            // over the widget or tooltip.
+            if (widgetArea.Contains(mousePosition) || tooltipArea.Contains(mousePosition))
                 return;
-            }
 
-            tooltipPanel.Visible =
-                false;
+            tooltipPanel.Visible = false;
         }
 
         // =============================================
         // WIDGET ENTER
         // =============================================
 
-        private void Widget_MouseEnter(
-            object sender,
-            EventArgs e)
+        private void Widget_MouseEnter(object sender, EventArgs e)
         {
             tooltipHideTimer.Stop();
 
@@ -931,9 +760,7 @@ namespace ExternalIPWidget
         // WIDGET LEAVE
         // =============================================
 
-        private void Widget_MouseLeave(
-            object sender,
-            EventArgs e)
+        private void Widget_MouseLeave(object sender, EventArgs e)
         {
             StartTooltipHideTimer();
         }
@@ -942,9 +769,7 @@ namespace ExternalIPWidget
         // TOOLTIP ENTER
         // =============================================
 
-        private void Tooltip_MouseEnter(
-            object sender,
-            EventArgs e)
+        private void Tooltip_MouseEnter(object sender, EventArgs e)
         {
             tooltipHideTimer.Stop();
         }
@@ -953,9 +778,7 @@ namespace ExternalIPWidget
         // TOOLTIP LEAVE
         // =============================================
 
-        private void Tooltip_MouseLeave(
-            object sender,
-            EventArgs e)
+        private void Tooltip_MouseLeave(object sender, EventArgs e)
         {
             StartTooltipHideTimer();
         }
@@ -968,15 +791,10 @@ namespace ExternalIPWidget
         {
             try
             {
-                if (!File.Exists(
-                    PositionFile))
-                {
+                if (!File.Exists(PositionFile))
                     return;
-                }
 
-                string[] lines =
-                    File.ReadAllLines(
-                        PositionFile);
+                string[] lines = File.ReadAllLines(PositionFile);
 
                 if (lines.Length < 2)
                     return;
@@ -984,56 +802,34 @@ namespace ExternalIPWidget
                 int x;
                 int y;
 
-                if (!int.TryParse(
-                    lines[0],
-                    out x))
-                {
+                if (!int.TryParse(lines[0], out x))
                     return;
-                }
 
-                if (!int.TryParse(
-                    lines[1],
-                    out y))
-                {
+                if (!int.TryParse(lines[1], out y))
                     return;
-                }
 
-                Rectangle area =
-                    SystemInformation.VirtualScreen;
+                Rectangle area = SystemInformation.VirtualScreen;
 
                 // =========================================
                 // LEFT
                 // =========================================
 
                 if (x < area.Left)
-                {
-                    x =
-                        area.Left + 10;
-                }
+                    x = area.Left + 10;
 
                 // =========================================
                 // TOP
                 // =========================================
 
                 if (y < area.Top)
-                {
-                    y =
-                        area.Top + 10;
-                }
+                    y = area.Top + 10;
 
                 // =========================================
                 // RIGHT
                 // =========================================
 
-                if (x >
-                    area.Right -
-                    Width)
-                {
-                    x =
-                        area.Right -
-                        Width -
-                        10;
-                }
+                if (x > area.Right - Width)
+                    x = area.Right - Width - 10;
 
                 // =========================================
                 // BOTTOM
@@ -1049,10 +845,7 @@ namespace ExternalIPWidget
                         10;
                 }
 
-                Location =
-                    new Point(
-                        x,
-                        y);
+                Location = new Point(x, y);
             }
             catch
             {
@@ -1068,8 +861,7 @@ namespace ExternalIPWidget
         {
             try
             {
-                return File.Exists(
-                    PositionFile);
+                return File.Exists(PositionFile);
             }
             catch
             {
@@ -1166,14 +958,8 @@ namespace ExternalIPWidget
                 int nWidthEllipse,
                 int nHeightEllipse);
 
-        [DllImport(
-            "gdi32.dll",
-            EntryPoint =
-                "DeleteObject")]
-        private static extern bool
-            DeleteObject(
-                IntPtr hObject);
+        [DllImport("gdi32.dll", EntryPoint = "DeleteObject")]
+        private static extern bool DeleteObject(IntPtr hObject);
     }
 }
 
-// Το αρχείο θέσης θα βρίσκεται εδώ: C:\Users\<το όνομά σου>\AppData\Roaming\ExternalIPWidget\position.txt
